@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="bn"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Earning Baby</title>
+<style>
+:root{--bg:#f3f5f9;--card:#fff;--tx:#161a22;--mu:#6b7384;--pr:#4f46e5;--pr2:#7c3aed;--bd:#e5e8ef;--ad:#fffaf0;--adb:#f2b84b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1117;--card:#181b24;--tx:#eceef4;--mu:#98a0b3;--bd:#262a36;--ad:#221d10}}
+:root[data-theme="dark"]{--bg:#0f1117;--card:#181b24;--tx:#eceef4;--mu:#98a0b3;--bd:#262a36;--ad:#221d10}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;padding-bottom:calc(120px + env(safe-area-inset-bottom,0px))}
+header{position:sticky;top:0;z-index:6;background:linear-gradient(135deg,var(--pr),var(--pr2));color:#fff;padding:14px 16px 16px;border-radius:0 0 22px 22px}
+.top{display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px}
+.logo{width:34px;height:34px;border-radius:10px;background:#fff3;display:grid;place-items:center;font-size:18px}
+.search{margin-top:12px;background:#fff;border-radius:12px;display:flex;align-items:center;padding:0 12px;color:#667}
+.search input{flex:1;border:0;outline:0;padding:11px 8px;font-size:15px;background:transparent;color:#222}
+main{padding:14px;max-width:640px;margin:auto}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.chip{flex:none;padding:8px 14px;border-radius:99px;background:var(--card);border:1px solid var(--bd);font-size:13px;color:var(--tx)}
+.chip.on{background:var(--pr);color:#fff;border-color:var(--pr)}
+h2{font-size:16px;margin:18px 2px 8px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:12px;margin:10px 0;display:flex;gap:12px;align-items:center}
+.th{width:54px;height:54px;border-radius:14px;display:grid;place-items:center;font-size:26px;flex:none}
+.card h3{margin:0 0 3px;font-size:15px}.card p{margin:0;color:var(--mu);font-size:13px;line-height:1.4}
+.ad{position:relative;margin:12px 0;border-radius:14px;overflow:hidden;background:var(--ad);border:1px solid var(--adb);min-height:0;display:none}
+.ad.has,.edit .ad{display:block}
+.ad .lb{font-size:10px;color:var(--mu);padding:6px 10px 0;letter-spacing:.4px}
+.ad .bd{padding:10px 12px 12px;font-size:14px}.ad .bd a{color:var(--pr);font-weight:700;text-decoration:none}
+.ad iframe{width:100%;border:0;min-height:60px;display:block}
+.edit .ad{border-style:dashed;cursor:pointer}
+.empty{color:var(--mu);font-size:13px;padding:14px;text-align:center}
+.ad.sticky{position:fixed;left:8px;right:8px;bottom:calc(66px + env(safe-area-inset-bottom,0px));margin:0;z-index:5;box-shadow:0 6px 24px #0003}
+nav{position:fixed;left:0;right:0;bottom:0;z-index:7;background:var(--card);border-top:1px solid var(--bd);display:flex;padding:6px 0 calc(6px + env(safe-area-inset-bottom,0px))}
+nav button{flex:1;background:none;border:0;color:var(--mu);font-size:11px;padding:6px;display:flex;flex-direction:column;align-items:center;gap:2px}
+nav button span{font-size:20px}nav button.on{color:var(--pr);font-weight:700}
+.row{display:flex;justify-content:space-between;align-items:center;padding:12px 4px;border-bottom:1px solid var(--bd);font-size:14px}
+.st{font-size:12px;padding:3px 9px;border-radius:99px;background:#8882}.st.ok{background:#16a34a22;color:#16a34a}
+.btn{padding:9px 14px;border:0;border-radius:10px;background:var(--pr);color:#fff;font-size:14px}.btn.g{background:#8882;color:var(--tx)}.btn[disabled]{opacity:.5}.wb{width:100%;padding:14px;font-size:15px;margin:10px 0}.lg{font-size:13px;color:var(--mu);padding:8px 2px;border-bottom:1px solid var(--bd);display:flex;justify-content:space-between}
+.sw{display:flex;justify-content:space-between;align-items:center;background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px}
+#m{position:fixed;inset:0;background:#000a;display:none;align-items:flex-end;justify-content:center;z-index:20}
+#m>div{background:var(--card);padding:18px;border-radius:20px 20px 0 0;width:100%;max-width:560px;padding-bottom:calc(18px + env(safe-area-inset-bottom,0px))}
+#m input,#m textarea{width:100%;margin:6px 0;padding:11px;border-radius:10px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);font-size:14px;font-family:inherit}
+</style></head><body>
+<header><div class="top"><div class="brand"><div class="logo">💰</div>Earning Baby</div><span style="font-size:20px">🔔</span></div>
+<div class="search">🔍<input id="q" placeholder="খুঁজুন..."></div></header>
+<main id="app"></main>
+<nav><button class="on" data-v="home"><span>🏠</span>হোম</button><button data-v="earn"><span>💰</span>আয়</button><button data-v="ads"><span>📢</span>বিজ্ঞাপন</button></nav>
+<div id="m"><div><b>বিজ্ঞাপন সেট করো</b><div id="mn" style="font-size:12px;color:var(--mu)"></div>
+<input id="t" placeholder="বিজ্ঞাপনের লেখা (যেমন: ৫০% ছাড়!)"><input id="l" placeholder="লিংক (https://...)">
+<textarea id="c" rows="3" placeholder="অথবা বিজ্ঞাপনের HTML কোড পেস্ট করো"></textarea>
+<div style="margin-top:8px"><button class="btn" id="s">সেভ</button> <button class="btn g" id="d">মুছো</button> <button class="btn g" id="x">বন্ধ</button></div></div></div>
+<script>
+var cats=["সব","খবর","টিপস","অফার","শিক্ষা"];
+var items=[["📰","দিনের প্রধান খবর","এখানে আপনার কনটেন্ট দেখানো হবে।","খবর","#e0e7ff"],["💡","দরকারি মোবাইল টিপস","সহজ ভাষায় ছোট ছোট কৌশল।","টিপস","#fef3c7"],["🎁","আজকের বিশেষ অফার","সীমিত সময়ের জন্য সুযোগ।","অফার","#fce7f3"],["📚","শেখার সহজ গাইড","ধাপে ধাপে নিজে নিজে শেখো।","শিক্ষা","#dcfce7"],["📰","আরও একটি খবর","এখানে আপনার কনটেন্ট দেখানো হবে।","খবর","#e0e7ff"],["💡","আরেকটি টিপস","সহজ ভাষায় ছোট ছোট কৌশল।","টিপস","#fef3c7"]];
+var names={top:"ওপরের ব্যানার",mid1:"ফিডের ১ম বিজ্ঞাপন",mid3:"ফিডের ২য় বিজ্ঞাপন",mid5:"ফিডের ৩য় বিজ্ঞাপন",bottom:"নিচের স্থির ব্যানার",reward:"রিওয়ার্ড বিজ্ঞাপন"};
+var store={},editMode=false,cat="সব",view="home",cur=null;
+try{store=JSON.parse(localStorage.getItem("ads")||"{}");editMode=localStorage.getItem("em")=="1"}catch(e){}
+function sv(){try{localStorage.setItem("ads",JSON.stringify(store));localStorage.setItem("em",editMode?"1":"0")}catch(e){}}
+var $=function(i){return document.getElementById(i)};
+var W={bal:0,day:"",n:0,last:0,log:[]},LIM=10,CD=60,SEC=15,RW=10,tm=null;
+try{W=Object.assign(W,JSON.parse(localStorage.getItem("w")||"{}"))}catch(e){}
+function sw(){try{localStorage.setItem("w",JSON.stringify(W))}catch(e){}}
+function today(){return new Date().toISOString().slice(0,10)}
+function cdLeft(){return Math.max(0,CD-Math.floor((Date.now()-W.last)/1000))}
+function setBtn(){var b=$("wa");if(!b||tm)return;if(W.day!=today()){W.day=today();W.n=0}
+ var c=cdLeft();b.disabled=W.n>=LIM||c>0;
+ b.textContent=W.n>=LIM?"আজকের লিমিট শেষ, কাল আবার এসো":c>0?"পরের বিজ্ঞাপন "+c+" সেকেন্ড পরে":"▶ বিজ্ঞাপন দেখে +"+RW+" ক্রেডিট নাও"}
+function earnHTML(){if(W.day!=today()){W.day=today();W.n=0}
+ var h='<h2>আমার ওয়ালেট</h2><div class="card" style="flex-direction:column;align-items:flex-start;gap:2px"><div style="font-size:12px;color:var(--mu)">মোট ক্রেডিট</div><div style="font-size:34px;font-weight:800">'+W.bal+' 🪙</div><div style="font-size:12px;color:var(--mu)">আজ '+W.n+'/'+LIM+' টি বিজ্ঞাপন দেখা হয়েছে</div></div>';
+ h+='<h2>বিজ্ঞাপন দেখো, ক্রেডিট পাও</h2>'+adHTML("reward").replace('class="ad ','class="ad has ');
+ h+='<button class="btn wb" id="wa"></button><div style="font-size:12px;color:var(--mu)">পুরো '+SEC+' সেকেন্ড অ্যাপে থাকতে হবে। বিজ্ঞাপনে ক্লিক করার দরকার নেই, ক্রেডিট শুধু দেখার জন্য।</div>';
+ if(W.log.length){h+='<h2>সাম্প্রতিক</h2>'+W.log.slice(0,6).map(function(x){return '<div class="lg"><span>'+x[0]+'</span><b>+'+x[1]+'</b></div>'}).join("")}
+ return h}
+function stopAd(){if(tm){clearInterval(tm);tm=null;setBtn()}}
+function startAd(){if(tm||W.n>=LIM||cdLeft()>0)return;var left=SEC,b=$("wa");b.disabled=true;b.textContent="দেখছো… "+left+" সেকেন্ড";
+ tm=setInterval(function(){left--;if(left>0){b.textContent="দেখছো… "+left+" সেকেন্ড";return}
+  clearInterval(tm);tm=null;W.bal+=RW;W.n++;W.last=Date.now();W.log.unshift([new Date().toLocaleTimeString("bn-BD",{hour:"2-digit",minute:"2-digit"})+" · বিজ্ঞাপন দেখা",RW]);W.log=W.log.slice(0,20);sw();render()},1000)}
+document.addEventListener("visibilitychange",function(){if(document.hidden)stopAd()});
+setInterval(setBtn,1000);
+function adHTML(id,cls){var a=store[id],has=a&&(a.c||a.t);
+ var h='<div class="ad '+(cls||"")+(has?" has":"")+'" data-id="'+id+'"><div class="lb">স্পনসরড</div>';
+ if(a&&a.c)h+='<iframe sandbox="allow-scripts allow-popups" srcdoc="'+a.c.replace(/&/g,"&amp;").replace(/"/g,"&quot;")+'"></iframe>';
+ else if(a&&a.t){h+='<div class="bd">'+(a.l?'<a href="'+a.l.replace(/"/g,"")+'" target="_blank" rel="noopener sponsored">':'<b>')+esc(a.t)+(a.l?"</a>":"</b>")+'</div>'}
+ else h+='<div class="empty">+ বিজ্ঞাপন বসাতে চাপ দাও</div>';
+ return h+'</div>'}
+function esc(s){return s.replace(/[&<>]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;"}[c]})}
+function render(){document.body.classList.toggle("edit",editMode);var h="";
+ if(view=="home"){var qq=$("q").value.trim();
+  h+=adHTML("top")+'<div class="chips">'+cats.map(function(c){return '<div class="chip'+(c==cat?" on":"")+'" data-c="'+c+'">'+c+'</div>'}).join("")+'</div><h2>আজকের জন্য</h2>';
+  items.forEach(function(it,i){if((cat=="সব"||it[3]==cat)&&(!qq||(it[1]+it[2]).indexOf(qq)>-1))h+='<div class="card"><div class="th" style="background:'+it[4]+'">'+it[0]+'</div><div><h3>'+it[1]+'</h3><p>'+it[2]+'</p></div></div>'+(i%2==1?adHTML("mid"+i):"")});
+ }else if(view=="earn"){h+=earnHTML()}else{h+='<h2>বিজ্ঞাপন ম্যানেজার</h2><div class="sw"><div><b>এডিট মোড</b><div style="font-size:12px;color:var(--mu)">চালু থাকলে বিজ্ঞাপনের জায়গায় চাপ দিয়ে বসানো যাবে</div></div><button class="btn '+(editMode?"":"g")+'" id="tg">'+(editMode?"চালু":"বন্ধ")+'</button></div><h2>সব জায়গা</h2>';
+  for(var k in names){var on=store[k]&&(store[k].t||store[k].c);h+='<div class="row"><span>'+names[k]+'</span><span><span class="st'+(on?" ok":"")+'">'+(on?"সক্রিয়":"খালি")+'</span> <button class="btn g" data-e="'+k+'">এডিট</button></span></div>'}}
+ $("app").innerHTML=h;
+ var b=document.querySelector(".ad.sticky");if(b)b.remove();document.body.insertAdjacentHTML("beforeend",adHTML("bottom","sticky"));setBtn()}
+document.addEventListener("click",function(e){var t=e.target;
+ var ad=t.closest(".ad");if(ad&&editMode){e.preventDefault();return openM(ad.dataset.id)}
+ var c=t.closest("[data-c]");if(c){cat=c.dataset.c;return render()}
+ var ed=t.closest("[data-e]");if(ed)return openM(ed.dataset.e);
+ if(t.closest("#wa"))return startAd();
+ if(t.closest("#tg")){editMode=!editMode;sv();return render()}
+ var n=t.closest("nav button");if(n){stopAd();view=n.dataset.v;document.querySelectorAll("nav button").forEach(function(b){b.classList.toggle("on",b==n)});render()}});
+function openM(id){cur=id;var a=store[id]||{};$("mn").textContent=names[id];$("t").value=a.t||"";$("l").value=a.l||"";$("c").value=a.c||"";$("m").style.display="flex"}
+$("s").onclick=function(){store[cur]={t:$("t").value,l:$("l").value,c:$("c").value};sv();$("m").style.display="none";render()};
+$("d").onclick=function(){delete store[cur];sv();$("m").style.display="none";render()};
+$("x").onclick=function(){$("m").style.display="none"};
+$("q").oninput=render;render();setBtn();
+</script><script>
+/* Android অ্যাপে AdMob (Capacitor). ব্রাউজারে এটা চলে না, তখন ডেমো কাজ করে */
+(function(){
+var C=window.Capacitor;if(!C||!C.isNativePlatform||!C.isNativePlatform())return;
+var A=C.Plugins.AdMob;
+var TEST=true; /* টেস্ট শেষে false করো, তখন আসল বিজ্ঞাপন আসবে */
+var U=["ca-app-pub-6112694873856564/9201493084","ca-app-pub-6112694873856564/4343295950","ca-app-pub-6112694873856564/9009921393","ca-app-pub-6112694873856564/9663819676","ca-app-pub-6112694873856564/9337224451"];
+var T_B="ca-app-pub-3940256099942544/6300978111",T_R="ca-app-pub-3940256099942544/5224354917",T_I="ca-app-pub-3940256099942544/1033173712";
+var st=document.createElement("style");st.textContent=".ad.sticky{display:none!important}body{padding-bottom:150px}";document.head.appendChild(st);
+var bi=0,bn=0,ri=0,ii=0;
+function showB(){A.showBanner({adId:TEST?T_B:U[bi],adSize:"ADAPTIVE_BANNER",position:"BOTTOM_CENTER",margin:64,isTesting:TEST}).catch(function(e){console.log(e)})}
+A.addListener("bannerAdFailedToLoad",function(){if(!TEST&&bn<U.length-1){bn++;bi=(bi+1)%U.length;A.removeBanner().catch(function(){}).then(showB)}});
+A.initialize({initializeForTesting:TEST}).then(showB).catch(function(e){console.log(e)});
+A.addListener("onRewardedVideoAdReward",function(){
+ W.bal+=RW;W.n++;W.last=Date.now();
+ W.log.unshift([new Date().toLocaleTimeString("bn-BD",{hour:"2-digit",minute:"2-digit"})+" · বিজ্ঞাপন দেখা",RW]);W.log=W.log.slice(0,20);sw();render()});
+A.addListener("onRewardedVideoAdDismissed",function(){tm=null;setBtn()});
+function tryR(i,n){return A.prepareRewardVideoAd({adId:TEST?T_R:U[i],isTesting:TEST}).then(function(){ri=i;return A.showRewardVideoAd()}).catch(function(e){if(!TEST&&n<U.length-1)return tryR((i+1)%U.length,n+1);throw e})}
+function tryI(i,n){return A.prepareInterstitial({adId:TEST?T_I:U[i],isTesting:TEST}).then(function(){ii=i;return A.showInterstitial()}).catch(function(e){if(!TEST&&n<U.length-1)return tryI((i+1)%U.length,n+1);throw e})}
+startAd=function(){
+ if(tm||W.n>=LIM||cdLeft()>0)return;
+ var b=$("wa");b.disabled=true;b.textContent="লোড হচ্ছে…";tm=1;
+ tryR(ri,0).catch(function(){tm=null;b.textContent="এখন বিজ্ঞাপন নেই, একটু পরে চেষ্টা করো";setTimeout(setBtn,3000)})};
+/* পুরো স্ক্রিন বিজ্ঞাপন: ৪ বার ট্যাব বদলালে একবার, আর দুইটার মাঝে কমপক্ষে ২ মিনিট */
+var cnt=0,lastI=Date.now();
+document.addEventListener("click",function(e){
+ if(!e.target.closest("nav button"))return;cnt++;
+ if(cnt%4==0&&Date.now()-lastI>120000){lastI=Date.now();tryI(ii,0).catch(function(){})}});
+})();
+</script>
+</body></html>
